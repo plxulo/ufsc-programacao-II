@@ -1,0 +1,72 @@
+{
+  "version": "2.0.0",
+  "configurations": [
+    {
+      "name": "GDB (Integrated Terminal)",
+      "type": "cppdbg",
+      "request": "launch",
+      "program": "${fileDirname}/${fileBasenameNoExtension}",
+      "args": [],
+      "stopAtEntry": false,
+      "cwd": "${workspaceFolder}",
+      "environment": [],
+      "MIMode": "gdb",
+      "miDebuggerPath": "/usr/bin/gdb",
+      "setupCommands": [
+        {
+          "description": "Enable quiet mode for gdb",
+          "text": "set verbose off",
+          "ignoreFailures": true
+        },
+        {
+          "description": "Enable pretty-printing for gdb",
+          "text": "-enable-pretty-printing",
+          "ignoreFailures": true
+        },
+        {
+          "description": "Disable pagination to avoid pauses",
+          "text": "set pagination off",
+          "ignoreFailures": true
+        },
+        {
+          "description": "Suppress GDB startup messages",
+          "text": "set startup-with-shell off",
+          "ignoreFailures": true
+        }
+      ],
+      "preLaunchTask": "build",
+      "internalConsoleOptions": "neverOpen",
+      "logging": {
+        "trace": false,
+        "traceResponse": false,
+        "engineLogging": false
+      }
+    },
+    {
+      "name": "Run in External Terminal",
+      "type": "cppdbg",
+      "request": "launch",
+      "program": "${fileDirname}/${fileBasenameNoExtension}",
+      "args": [],
+      "stopAtEntry": false,
+      "cwd": "${workspaceFolder}",
+      "environment": [],
+      "MIMode": "gdb",
+      "miDebuggerPath": "/usr/bin/gdb",
+      "setupCommands": [
+        {
+          "description": "Enable quiet mode for gdb",
+          "text": "set verbose off",
+          "ignoreFailures": true
+        }
+      ],
+      "preLaunchTask": "build",
+      "internalConsoleOptions": "neverOpen",
+      "logging": {
+        "trace": false,
+        "traceResponse": false,
+        "engineLogging": false
+      }
+    }
+  ]
+}
