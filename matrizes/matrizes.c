@@ -59,6 +59,7 @@ void print(int matrix[MAX_N][MAX_N], int N, int case_number) {
     }
     printf("\n");
   }
+  printf("\n");
 }
 
 int main(){
@@ -86,7 +87,7 @@ int main(){
         row(matrix, N, a - 1, b - 1);
       } else if (strcmp(operation, "col") == 0) {
         scanf("%d %d", &a, &b);
-        row(matrix, N, a - 1, b - 1);
+        col(matrix, N, a - 1, b - 1);
       } else if (strcmp(operation, "inc") == 0) {
         inc(matrix, N);
       } else if (strcmp(operation, "dec") == 0) {
