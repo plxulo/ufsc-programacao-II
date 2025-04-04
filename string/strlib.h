@@ -19,7 +19,19 @@
  * @param str string para qual o tamanho deve ser computado
  * @return o tamanho da string ou -1 no caso de string nula
  */
-int 	str_length		(const char *str);
+int 	str_length		(const char *str) {
+  // Passo 1:
+  if (str == NULL) {
+    return -1;
+  }
+  // Passo 2:
+  int lenght = 0;
+  while(str[lenght] != '\0') {
+    lenght++;
+  }
+  // Passo 3:
+  return lenght;
+}
 
 
 /**
