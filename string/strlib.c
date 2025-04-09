@@ -11,8 +11,13 @@ int main() {
   printf("Aqui é pra aparecer -1: %s = %d\n\n", palavra_null, str_length(palavra_null));
 
   printf("Cópia da palavra - original: %s - cópia: %s\n\n",palavra,copia_palavra);
-  
-  str_compare(palavra, palavra_legal);
   printf("Paulo vs UFSC: %d\n", str_compare("Paulo", "UFSC"));
+
+  char lower[] = "Paulo";
+  printf("lower: %s\n\n", lower);
+
+  int upper = str_upper(lower);
+  printf("upper count: %d\n\n", upper);
+
   return 0;
 }

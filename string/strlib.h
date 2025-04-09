@@ -113,7 +113,23 @@ int 	str_reverse 	(char *str);
  * @return o número de caracteres que foram transformados para caixa al-
  * ta. caso a string seja nula, retorna -1.
  */
-int		str_upper 		(char *str);
+int		str_upper 		(char *str) {
+  if (str == NULL) {
+    return -1;
+  }
+
+  int i=0;
+  int count=0;
+  while(str[i] != '\0') {
+    if(str[i] >= 'a' && str[i] <= 'z') {
+      str[i] = str[i] - 32;
+      count++;
+    }
+    i++;
+  }
+
+  return count;
+}
 
 
 /**
