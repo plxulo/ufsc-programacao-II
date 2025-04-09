@@ -46,7 +46,17 @@ int 	str_length		(const char *str) {
  * a string recebida como parâmetro seja nula a função retorna um pon-
  * teiro nulo.
  */
-char*	str_duplicate	(const char *str);
+char*	str_duplicate	(const char *str) {
+  if (str == NULL) {
+    return NULL;
+  }
+
+  char *copy = (char*)malloc(str_length(str + 1) * sizeof(char));
+  for(int i=0; i<str_length(str); i++) {
+    copy[i]=str[i];
+  }
+  return copy;
+}
 
 /**
  * @brief string compare (compara strings) --- 0.5 pontos
@@ -60,7 +70,26 @@ char*	str_duplicate	(const char *str);
  * @return a função retorna: 0 caso as strings sejam lexicograficamente 
  * iguais; -1 caso stra < strb; +1 caso stra > strb.
  */
-int		str_compare		(const char *stra, const char *strb);
+int		str_compare		(const char *stra, const char *strb) {
+  // comparar os caracteres stra e strb sem \0
+  int i=0;
+  while(stra[i] != '\0' && strb[i] != '\0') {
+    if(stra[i] != strb[i]) {
+      return(stra[i]<strb[i]) ? 1 : -1;
+    }
+    i++;
+  }
+
+  if(stra[i] == '\0' && strb[i] == '\0') {
+    if (stra[i] == '\0' && strb[i] == '\0') {
+      return 0;
+    }
+  } else if (stra[i] == '\0') {
+    return -1;
+  } else {
+    return 1;
+  }
+}
 
 
 /**
