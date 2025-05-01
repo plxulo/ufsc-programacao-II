@@ -141,7 +141,23 @@ int		str_upper 		(char *str) {
  * @return o número de caracteres que foram transformados para caixa
  * baixa. caso a string seja nula, retorna -1.
  */
-int		str_lower 		(char *str);
+int		str_lower 		(char *str) {
+  if(str == NULL) {
+    return -1;
+  }
+
+  int i=0;
+  int count=0;
+  while(str[i] != '\0') {
+    if(str[i] >= 'A' && str[i] <= 'Z') {
+      str[i] = str[i] - 32;
+      count++;
+    }
+    i++;
+  }
+
+  return count;
+}
 
 
 /**
@@ -160,7 +176,24 @@ int		str_lower 		(char *str);
  * @return retorna 1 caso a cópia seja feita, 0 caso não seja possível 
  * copiar (restrições de tamanho) e -1 caso src ou dst sejam nulas.
  */
-int 	str_copy		(char *dst, const char *src);
+int 	str_copy		(char *dst, const char *src) {
+  if(dst == NULL || src == NULL) {
+    return -1;
+  }
+
+  int src_len = str_length(src)+1;
+  int dst_len = str_length(dst)+1;
+
+  if(dst_len < src_len) {
+    return 0;
+  }
+
+  for (int i = 0; i<src_len; i++) {
+    dst[i] = src[i];
+  }
+
+  return 1;
+}
 
 
 /**
@@ -177,7 +210,39 @@ int 	str_copy		(char *dst, const char *src);
  * retornada. caso stra e strb sejam nulas, um ponteiro nulo é retorna-
  * do pela função.
  */
-char* 	str_concatenate (const char *stra, const char *strb);
+char* 	str_concatenate (const char *stra, const char *strb) {
+  char str;
+  const char *ptr;
+  
+  if (stra == NULL && strb == NULL) return NULL;
+  if (stra == NULL) return str_copy(strb, str);
+  if (strb == NULL) return str_copy(stra, str);
+
+  size_t len_a = 0, len_b = 0;
+  len_a = str_length(stra);
+  len_b = str_length(strb);
+
+  char *resultado = malloc(len_a + len_b + 1);
+  if (resultado == NULL) return NULL;
+
+  char *dest = resultado;
+  ptr = stra;
+  while (*ptr != '\0') {
+    *dest = *ptr;
+    dest++;
+    ptr++;
+  }
+
+  ptr = strb;
+  while (*ptr != '\0') {
+    *dest = *ptr;
+    dest++;
+    ptr++;
+  }
+
+  *dest = '\0';
+  return resultado;
+}
 
 
 /**
@@ -191,7 +256,24 @@ char* 	str_concatenate (const char *stra, const char *strb);
  * string str. caso o caractere não seja encontrado ou str seja nula
  * a função retorna -1.
  */
-int 	str_find_first	(const char *str, const char c);
+int 	str_find_first	(const char *str, const char c) {
+  if(str == NULL) {
+    return -1;
+  }
+
+  int pos = 0;
+  while(str[pos] != '\0') {
+    if(str[pos] == c) {
+      return pos;
+    }
+    pos++;
+  }
+  if(c == '\0') {
+    return NULL;
+  }
+
+  return -1;
+}
 
 
 /**
@@ -205,7 +287,26 @@ int 	str_find_first	(const char *str, const char c);
  * string str. caso o caractere não seja encontrado ou str seja nula
  * a função retorna -1.
  */
-int 	str_find_last 	(const char *str, const char c);
+int 	str_find_last 	(const char *str, const char c) {
+  if(str == NULL) {
+    return -1;
+  }
+  int last_pos = -1;
+  int i = 0;
+
+  while (str[i] != '\0') {
+    if (str[i] == c) {
+      last_pos = i;
+    }
+    i++;
+  }
+
+  if (c == '\0') {
+    return i;
+  }
+
+  return (last_pos != -1) ? last_pos : -1;
+}
 
 
 /**
@@ -218,6 +319,26 @@ int 	str_find_last 	(const char *str, const char c);
  * um ou mais espaços, ex: "   o gato preto cruzou a   estrada" possui
  * seis palavras. retorna -1 caso str seja nula.
  */
-int 	str_count_words (const char *str);
+int 	str_count_words (const char *str) {
+  if (str == NULL) {
+    return -1;
+  }
+
+  int count = 0;
+  int in_word = 0;
+
+  for (int i = 0; str[i] != '\0'; i++) {
+    if (str[i] == ' ') {
+      in_word = 0;
+    } else {
+      if (!in_word) {
+        count++;
+        in_word = 1;
+      }
+    }
+  }
+
+  return count;
+}
 
 #endif
