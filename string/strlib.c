@@ -16,9 +16,12 @@ char*	str_duplicate	(const char *str) {
     return NULL;
   }
 
-  char *copy = (char*)malloc((str_length(str) + 1) * sizeof(char));
-  for(int i=0; i<str_length(str); i++) {
-    copy[i]=str[i];
+  int len = str_length(str);
+  char *copy = malloc((len + 1) * sizeof(char));
+  if (copy == NULL) return NULL;
+
+  for(int i = 0; i <= len; i++) {
+    copy[i] = str[i];
   }
   return copy;
 }
